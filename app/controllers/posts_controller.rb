@@ -21,11 +21,11 @@ def show
 end
 
 def edit
-   @post=Post.find_by(params[:id]) 
+   @post=Post.find_by(id: params[:id]) 
 end
 
 def update
-     @post=Post.find_by(params[:id]) 
+     @post=Post.find_by(id: params[:id]) 
     if @post.update_attributes(post_params)
         flash[:success]="編集が成功しました"
         redirect_to @post
