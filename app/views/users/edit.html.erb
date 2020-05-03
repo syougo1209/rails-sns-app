@@ -1,5 +1,6 @@
 <% provide(:title, "ユーザー編集") %>
 <h1 class="title" style="text-align: center">ユーザーの編集</h1>
+<div class="row">
 <div class="form-horizontal col-md-6 col-md-offset-3" role="form">
   <%= form_for(@user) do |f| %>
     <div class="form-group">
@@ -29,7 +30,9 @@
   <%= f.submit '変更', class: "btn btn-primary form-control mt-4" %>
   <% end %>
  
- 
-  <%= link_to "delete", @user, method: :delete, data: { confirm: "You sure?" } %>
-
+ <div>
+     <h2>ユーザーの削除</h2>
+  <%= link_to "ユーザー削除", @user, method: :delete, data: { confirm: "You sure?" }, class: "delete-button btn btn-danger mt-5" %>
+ </div>
+</div>
 </div>
