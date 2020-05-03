@@ -1,7 +1,7 @@
 <h1>ユーザ<%= @user.id %>詳細画面</h1>
 <div class="row">
 <section class="user-show col-md-4">
-    <div class="show-name">
+<div class="show-name">
 <%= @user.name %>
 </div>
 <div class="show-user-pref">
@@ -13,6 +13,6 @@
 
 </section>
 <section class="post-list col-md-8">
-    <h1>ポスト一覧</h1>
+   <%= render 'shared/feed'%>
 </section>
 </div> 

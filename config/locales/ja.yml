@@ -6,4 +6,5 @@ ja:
         prefecture: 県
         password: パスワード
         password_confirmation: 確認用パスワード
-        
+      post:
+         content: 内容

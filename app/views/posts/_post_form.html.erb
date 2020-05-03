@@ -1,0 +1,12 @@
+ <%= form_for(@post) do |f| %>
+    <div class="form-group" >
+    <%= render 'shared/error_messages', object: f.object%>
+
+      
+        <%= f.label :content, '感想などご自由にお書きください', class:'control-label' %>
+        <%= f.text_area :content,  class: 'form-control', :size=>"60x10" %>
+
+   
+    </div>
+  <%= f.submit '投稿', class: "btn btn-primary form-control mt-4" %>
+  <% end %>

@@ -1,5 +1,10 @@
 <% provide(:title, "home") %>
-<h1 class="mt-4">StaticPages#home</h1>
+<% if login? %>
+<%= render 'login_home' %>
+<% else %>
 
-<%= link_to "about",about_path %>
-<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+<%= render 'not_login_home' %>
+
+<% end %>
+
+
