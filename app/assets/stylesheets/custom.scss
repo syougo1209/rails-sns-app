@@ -4,6 +4,13 @@
 .container{
  margin-top: 100px; 
 }
+a{
+color: #696969;
+} 
+a:hover{
+color: #808080;
+text-decoration:none
+}
 //新規ユーザーフォーム
 .title{
 margin-top: 100px;
@@ -31,4 +38,14 @@ margin-top: 100px;
   .form-control {
     color: $state-danger-text;
   }
+}
+//ユーザー一覧
+
+.user_index{
+ padding:40px;
+ border-bottom: 1px solid #d3d3d3;
+ font-size: 20px;
+}
+.prefecture{
+ text-align: right;   
 }

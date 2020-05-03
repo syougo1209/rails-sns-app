@@ -1,0 +1,18 @@
+<h1 style="text-align:center">すべてのユーザー</h1>
+<div class="row">
+    <section class="current_user_info col-md-4">
+        <%= current_user.name %>
+        <% if current_user.prefecture.nil? %>
+        県が設定されていません
+        <% else %>
+        <%= current_user.prefecture %>
+        <% end %>
+    </section>
+
+
+<section class="users col-md-8">
+    
+    <%= render @users %>
+    <%= will_paginate %>
+</section>
+</div>

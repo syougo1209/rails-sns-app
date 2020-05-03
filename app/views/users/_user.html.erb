@@ -1,0 +1,8 @@
+    <div class="user_index">
+        <% if current_user.id!=user.id %>
+        <%= link_to user.name, user %>
+        <div class="prefecture">
+        <%= user.prefecture %>
+        </div>
+        <% end %>
+    </div> 

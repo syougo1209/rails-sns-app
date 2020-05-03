@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+    before_action :auth_login, only: [:edit, :update, :destroy]
+    before_action :limit_action_from_other_user, only: [:edit, :update, :destroy]
+    
+    def index
+       @users=User.paginate(page: params[:page])
+    end
+    
   def new
     @user=User.new
   end
@@ -18,6 +25,25 @@ class UsersController < ApplicationController
     @user=User.find(params[:id])
   end
   
+  def edit
+     @user=User.find(params[:id]) 
+  end
+  
+  def update
+      @user=User.find(params[:id])
+      if @user.update_attributes(user_params)
+          flash[:success]="編集が成功しました"
+          redirect_to @user
+     else
+         render "edit"
+     end
+  end
+  
+  def destroy
+     User.find(params[:id]).destroy
+     flash[:success] = "ご利用ありがとうございました"
+     redirect_to login_path
+  end
   
   
   private

@@ -1,5 +1,15 @@
-<h1>ユーザ0詳細画面</h1>
-<h1>ユーザ0詳細画面</h1>
-
+<h1>ユーザ<%= @user.id %>詳細画面</h1>
+<div class="row">
+<section class="user-show col-md-4">
 <%= @user.name %>
 <%= @user.prefecture %>
+
+<% if current_user? %>
+<%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %>
+<% end %>
+
+</section>
+<section class="post-list col-md-8">
+    <h1>ポスト一覧</h1>
+</section>
+</div> 
