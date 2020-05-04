@@ -2,11 +2,25 @@
     <div class="form-group" >
     <%= render 'shared/error_messages', object: f.object%>
 
-      
+       <%= f.label :title, 'タイトル', class:'control-label' %>
+        <%= f.text_area :title,  class: 'form-control' %>
         <%= f.label :content, '感想などご自由にお書きください', class:'control-label' %>
         <%= f.text_area :content,  class: 'form-control', :size=>"60x10" %>
+        <span class="post_picture">
+       <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'  %>
+       </span>
 
    
     </div>
   <%= f.submit '投稿', class: "btn btn-primary form-control mt-4" %>
   <% end %>
+  
+  
+  <script type="text/javascript">
+  $('#post_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('ファイルのサイズが大きすぎます');
+    }
+  });
+</script>

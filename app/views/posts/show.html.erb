@@ -1,6 +1,17 @@
 <div class="post-show">
 <section class="about-user"><%= @post.user.name %></section>
-<section classs="about-post mt-4"><%= simple_format(@post.content) %></section>
+
+<section classs="about-post mt-4">
+    <div>
+        <%= @post.title %>
+     </div>
+    <div>
+    <%= simple_format(@post.content) %>
+    </div>
+     <div class="post_image">
+    <%= image_tag @post.picture.url if @post.picture? %>
+     </div>
+    </section>
 <div>
 <%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %>
 </div>
