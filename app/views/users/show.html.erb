@@ -1,4 +1,4 @@
-<h1>ユーザ<%= @user.id %>詳細画面</h1>
+
 <div class="row">
 <section class="user-show col-md-4">
     
@@ -10,12 +10,18 @@
 <div class="show-user-pref">
 <%= @user.prefecture %>
 </div>
+<div class="follow">
+    <%= render "shared/follow_info" %>
+</div>
 <% if current_user? %>
 <%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %>
+<% else %>
+<%= render "shared/follow_form" %>
 <% end %>
 
 </section>
 <section class="post-list col-md-8">
+    <h4><%=@user.posts.count %>件の投稿</h4>
    <%= render 'shared/feed'%>
 </section>
 </div> 

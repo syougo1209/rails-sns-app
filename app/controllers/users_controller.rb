@@ -46,6 +46,16 @@ class UsersController < ApplicationController
      redirect_to login_path
   end
   
+  def following
+      user=User.find(params[:id])
+      @following=user.following.paginate(page: params[:page])
+  end
+  
+  def followers
+      user=User.find(params[:id])
+      @followers=user.followers.paginate(page: params[:page])
+  end
+  
   
   private
   

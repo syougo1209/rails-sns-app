@@ -1,9 +1,9 @@
     <div class="user_index">
-        <% if current_user.id!=user.id %>
+      
         <%= image_tag user.picture.show.url, :size => '70x70',class: "user-thumb" if user.picture? %>
         <%= link_to user.name, user %>
         <div class="prefecture">
         <%= user.prefecture %>
         </div>
-        <% end %>
+
     </div> 

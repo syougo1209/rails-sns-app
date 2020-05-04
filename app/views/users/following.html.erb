@@ -1,0 +1,6 @@
+<% @users=@following %>
+<h2>フォローしているユーザー</h2>
+<section>
+    <%= render @users %>
+    <%= will_paginate  %>
+</section>
