@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200504022848) do
+ActiveRecord::Schema.define(version: 20200504030811) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20200504022848) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.string "picture"
     t.index ["name"], name: "index_users_on_name", unique: true
   end
 

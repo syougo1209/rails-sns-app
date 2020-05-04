@@ -1,8 +1,11 @@
  <div class="post_image">
-  <div class="user-name">
+  <div>
+   <%= image_tag current_user.picture.show.url,class: "user-thumb" if current_user.picture? %>
+   </div>
+   <div class="user-name">
 <%= current_user.name %>
 </div>
-<div class="show-user-pref">
+<div class="show-user-pref ">
 <%= current_user.prefecture %>
 </div>
 </div>

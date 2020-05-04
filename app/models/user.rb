@@ -1,5 +1,6 @@
 class User < ApplicationRecord
    has_many :posts, dependent: :destroy
+   mount_uploader :picture, PictureUploader
 
    
    validates :name, 

@@ -1,4 +1,5 @@
 <div class="post-ident post-<%= post.id %>">
+    <span class="post-user-image"><%= image_tag post.user.picture.thumb.url, :size => '70x70',class: "user-thumb" if post.user.picture? %></span>
     <span class="post-user-name"><%= link_to  post.user.name, post.user %></span>
     
     <span class="content">

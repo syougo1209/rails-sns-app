@@ -1,6 +1,9 @@
 <h1>ユーザ<%= @user.id %>詳細画面</h1>
 <div class="row">
 <section class="user-show col-md-4">
+    
+    <%= image_tag @user.picture.show.url,class: "user-thumb" if @user.picture? %>
+
 <div class="show-name">
 <%= @user.name %>
 </div>

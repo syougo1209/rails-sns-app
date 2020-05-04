@@ -1,16 +1,22 @@
-<div class="post-show">
-<section class="about-user"><%= @post.user.name %></section>
+<div class="post-show row">
+    <section class="post-show col-md-7">
+<section class="about-user"><%= image_tag @post.user.picture.thumb.url, :size => '70x70',class: "user-thumb" if @post.user.picture? %>
+<%= @post.user.name %>
+</section>
 
 <section classs="about-post mt-4">
-    <div>
-        <%= @post.title %>
-     </div>
-    <div>
-    <%= simple_format(@post.content) %>
-    </div>
      <div class="post_image">
-    <%= image_tag @post.picture.url if @post.picture? %>
+    <%= image_tag @post.picture.url,class: "post-show-image" if @post.picture? %>
      </div>
+     
+     <div class="post-title">
+        <h3> <%= @post.title %></h3>
+     </div>
+     
+     <div>
+    <%= simple_format(@post.content, class: "post-content") %>
+    
+    </div>
     </section>
 <div>
 <%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %>
@@ -20,4 +26,10 @@
                                        data: { confirm: "You sure?" } %>
 
 </div>
+</section>
+
+<section class="other-post col-md-5">
+    
+    
+</section>
 </div>
