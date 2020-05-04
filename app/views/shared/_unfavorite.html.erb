@@ -1,0 +1,6 @@
+<%= form_for(current_user.likes.find_by(post_id: @post.id),
+             html: { method: :delete },
+             remote: true) do |f| %>
+
+  <%= f.submit "いいねを解除", class: "unfavorite-button btn" %>
+  <% end %>

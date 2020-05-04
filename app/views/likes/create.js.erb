@@ -1,0 +1,2 @@
+$("#favorite_form").html("<%= escape_javascript(render('shared/unfavorite')) %>");
+$("#post-showfavorite-number").html('<%= @post.like_people.count %>いいね');

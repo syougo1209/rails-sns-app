@@ -8,6 +8,10 @@
      <div class="post_image">
     <%= image_tag @post.picture.url,class: "post-show-image" if @post.picture? %>
      </div>
+     <div id="post-show-favorite">
+         <%= render 'shared/favorite_form' %><p id="post-showfavorite-number"><%= @post.like_people.count %>いいね</p>
+         </div>
+         
      
      <div class="post-title">
         <h3> <%= @post.title %></h3>

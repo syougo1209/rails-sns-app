@@ -9,8 +9,9 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :followers, through: :passive_relationships, source: :follower
   #いいねの設定
-  has_many  :likes, dependent: :destroy
-  has_many :like_posts, through: :likes, source: :post
+ 
+   has_many :likes, dependent: :destroy
+   has_many :like_posts, through: :likes, source: :post
    
    mount_uploader :picture, PictureUploader
    validates :name, 
@@ -39,6 +40,18 @@ end
 
 def follow?(other_user)
     following.include?(other_user)
+end
+
+def favorite(favorite_post)
+    like_posts << favorite_post
+end
+
+def unfavorite(favorite_post)
+    likes.find_by(post_id: favorite_post).destroy
+end
+
+def favorite?(favorite_post)
+ like_posts.include?(favorite_post)
 end
 
 end

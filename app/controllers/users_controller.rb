@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   def show
     @user=User.find(params[:id])
     @posts=@user.posts.paginate(page: params[:page])
+    @likeposts=@user.like_posts.paginate(page: params[:page])
   end
   
   def edit
@@ -54,6 +55,11 @@ class UsersController < ApplicationController
   def followers
       user=User.find(params[:id])
       @followers=user.followers.paginate(page: params[:page])
+  end
+  
+  def likeposts
+      user=User.find(params[:id])
+      @likeposts=user.like_posts.paginate(page: params[:page])
   end
   
   
