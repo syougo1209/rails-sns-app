@@ -10,9 +10,9 @@ version :show do
   process resize_to_fill: [200, 200]
  end
  
- version :thumb do
-  process resize_to_fit: [50, 50]
- end
+ #version :thumb do
+ # process resize_to_fit: [20, 20]
+# end
  
  
   # Choose what kind of storage to use for this uploader:
