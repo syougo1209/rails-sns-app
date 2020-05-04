@@ -9,6 +9,7 @@
     <%= image_tag post.picture.show.url if post.picture? %>
      </div>
      <div>
-         <%= time_ago_in_words(post.created_at) %> 前に投稿.
+        <p> <%= post.like_people.count %>いいね</p>
+        <p> <%= time_ago_in_words(post.created_at) %> 前に投稿.</p>
      </div>
 </div>
