@@ -9,9 +9,10 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :followers, through: :passive_relationships, source: :follower
   #いいねの設定
- 
    has_many :likes, dependent: :destroy
    has_many :like_posts, through: :likes, source: :post
+   #コメント
+    has_many :comments, dependent: :destroy 
    
    mount_uploader :picture, PictureUploader
    validates :name, 
@@ -53,5 +54,6 @@ end
 def favorite?(favorite_post)
  like_posts.include?(favorite_post)
 end
+
 
 end

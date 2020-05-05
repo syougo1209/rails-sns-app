@@ -1,0 +1,11 @@
+<% @comment=current_user.comments.build %>
+<div id="comment-form ">
+<%= form_for(@comment, html: { class: "form-inline"})  do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+  <div><%= f.hidden_field :post_id, :value => @post.id %></div>
+  <div class="form-group">
+  <%= f.text_field :content,  class: 'form-control' %>
+  </div>
+  <%= f.submit "送信", class: "btn btn-primary" %>
+<% end %>
+</div>

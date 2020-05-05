@@ -62,6 +62,7 @@ class UsersController < ApplicationController
       @likeposts=user.like_posts.paginate(page: params[:page])
   end
   
+
   
   private
   

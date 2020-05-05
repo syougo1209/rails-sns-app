@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   #いいねの設定
   has_many :likes, dependent: :destroy
   has_many :like_people, through: :likes, source: :user
-   
+  has_many :comments, dependent: :destroy 
    
   default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader

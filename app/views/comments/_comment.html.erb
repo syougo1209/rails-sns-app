@@ -1,0 +1,6 @@
+<li class="list-group-item">
+    <p><%= comment.user.name %></p>
+   <p><%= comment.content %></p>
+   <%= link_to "コメントの削除", comment, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+</li>

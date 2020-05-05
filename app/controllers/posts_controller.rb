@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
     before_action :auth_login
-    before_action :correct_user, only: [:edit,:update]
+    before_action :correct_user, only: [:edit,:update, :destroy]
 
 def new
    @post=current_user.posts.build
@@ -18,6 +18,7 @@ end
 
 def show
 @post=Post.find(params[:id])
+@comments=@post.comments.paginate(page: params[:page])
 end
 
 def edit
@@ -48,6 +49,7 @@ def post_params
 end
 
 def correct_user
+     flash[:danger]="権限がありません"
       @post = current_user.posts.find_by(id: params[:id])
       redirect_to root_url if @post.nil?
   end

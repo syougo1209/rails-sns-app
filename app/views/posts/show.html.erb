@@ -4,9 +4,11 @@
 <%= @post.user.name %>
 <span id="post-show-title"><%= @post.title %></span>
 <span id="post-edit-link" style="float: right">
+    <% if current_user==@post.user %>
 <%= link_to "投稿の編集", edit_post_path(@post) %>
 <%= link_to "投稿の削除", @post, method: :delete,
                                        data: { confirm: "You sure?" } %>
+                                       <% end %>
  </span>                                      
 </section>
 
@@ -21,7 +23,16 @@
     <%= simple_format(@post.content) %>
     
     </section>
-
+<section id="comments-area">
+    <%=render 'comments/comments_form' %>
+    <div id="comment-area">
+        <%= @comments.count %>件のコメント
+        <ul class="list-group">
+        <%= render @comments %>
+      </ul>
+      <%= will_paginate @comments %>
+    </div>
+</section>
 
 </section>
 
