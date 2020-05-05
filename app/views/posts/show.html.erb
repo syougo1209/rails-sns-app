@@ -1,7 +1,13 @@
 <div class="post-show row">
     <section class="post-show col-md-7">
-<section class="about-user"><%= image_tag @post.user.picture.show.url, :size => '70x70',class: "user-thumb" if @post.user.picture? %>
+<section class="about-user"><%= image_tag @post.user.picture.show.url, :size => '70x70',class: "user-thumb"  %>
 <%= @post.user.name %>
+<span id="post-show-title"><%= @post.title %></span>
+<span id="post-edit-link" style="float: right">
+<%= link_to "投稿の編集", edit_post_path(@post) %>
+<%= link_to "投稿の削除", @post, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+ </span>                                      
 </section>
 
 <section classs="about-post mt-4">
@@ -12,24 +18,11 @@
          <%= render 'shared/favorite_form' %><p id="post-showfavorite-number"><%= @post.like_people.count %>いいね</p>
          </div>
          
-     
-     <div class="post-title">
-        <h3> <%= @post.title %></h3>
-     </div>
-     
-     <div>
-    <%= simple_format(@post.content, class: "post-content") %>
+    <%= simple_format(@post.content) %>
     
-    </div>
     </section>
-<div>
-<%= link_to "編集", edit_post_path(@post), class: "btn btn-success" %>
-</div>
-<div>
-    <%= link_to "削除", @post, method: :delete,
-                                       data: { confirm: "You sure?" } %>
 
-</div>
+
 </section>
 
 <section class="other-post col-md-5">

@@ -81,10 +81,23 @@ margin-top: 100px;
 .post-ident{
  padding: 30px;
  border-bottom: 1px solid #dcdcdc;
- 
+ position: relative;
 }
 .post-user-name{
  margin-right: 100px;
+}
+//postのひとつ　
+#post-details{
+ margin-right: 0;
+ position: absolute;
+ bottom: 0;
+ right: 0;
+}
+#post-fav-detail{
+ padding: 20px;
+}
+#post-create-detail{
+ padding: 20px;
 }
 
 .about-user{
@@ -109,7 +122,9 @@ margin-top: 40px;
 
  text-align: center;
 }
-
+.about-user{
+ position: relative;
+}
 .post-content{
  margin-top:20px;
  padding: 10px;
@@ -118,9 +133,15 @@ margin-top: 40px;
  
  width: 100%;
 }
-.post-title{
+#post-show-title{
+font-size: 20px;
+ margin-left: 100px;
+}
+#post-edit-link{
+ position: absolute;
+ bottom: 0;
+ right: 10px;
  
- border-bottom:1px solid #dcdcdc;
 }
 .post-content{
  padding: 10px;
@@ -135,6 +156,7 @@ background: none;
   border: none;
   padding: 0;
 }
+
 //ホームのユーザーinfo
 .user-name{
  margin-top:20px;

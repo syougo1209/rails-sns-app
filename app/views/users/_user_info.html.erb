@@ -1,6 +1,10 @@
  <div class="post_image">
   <div>
-   <%= image_tag current_user.picture.show.url,class: "user-thumb" if current_user.picture? %>
+   <% if current_user.picture? %>
+   <%= image_tag current_user.picture.show.url,class: "user-thumb" %>
+   <% else %>
+   <%= image_tag("default.jpg", :size => "200x200",class: "user-thumb") %>
+   <% end %>
    </div>
    <div class="user-name">
 <%= current_user.name %>

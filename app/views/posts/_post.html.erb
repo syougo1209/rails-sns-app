@@ -1,15 +1,15 @@
 <div class="post-ident post-<%= post.id %>">
-    <span class="post-user-image"><%= image_tag post.user.picture.show.url,:size => '70x70',class: "user-thumb" if post.user.picture? %></span>
+    <span class="post-user-image">
+        <%= image_tag post.user.picture.show.url,:size => '70x70',class: "user-thumb" %>
+    </span>
     <span class="post-user-name"><%= link_to  post.user.name, post.user %></span>
-    
     <span class="content">
         <%= link_to post.title, post %>
         </span>
         <div class="post_image">
-    <%= image_tag post.picture.show.url if post.picture? %>
+    <%= image_tag post.picture.show.url if post.picture?%>
      </div>
-     <div>
-        <p> <%= post.like_people.count %>いいね</p>
-        <p> <%= time_ago_in_words(post.created_at) %> 前に投稿.</p>
+     <div id="post-details">
+        <span id="post-fav-detail"><%= post.like_people.count %>いいね</span> <span id="post-create-detail"><%= time_ago_in_words(post.created_at) %> 前に投稿.</span>
      </div>
 </div>
