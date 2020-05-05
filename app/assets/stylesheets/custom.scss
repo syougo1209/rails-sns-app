@@ -1,5 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+ @import "font-awesome";
 //初期設定
 .container{
  margin-top: 100px; 
@@ -123,6 +125,15 @@ margin-top: 40px;
 .post-content{
  padding: 10px;
  line-height: 30px
+}
+.fa-heart{
+ color: red;
+ font-size: 20px;
+}
+.button-as_link{
+background: none;
+  border: none;
+  padding: 0;
 }
 //ホームのユーザーinfo
 .user-name{
