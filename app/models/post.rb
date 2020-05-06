@@ -13,6 +13,14 @@ class Post < ApplicationRecord
   validates :title,   presence:true, length: { maximum: 50 }
   validate  :picture_size
 
+  def self.search(search) 
+     if search
+       where(['content LIKE ?', "%#{search}%"]) 
+     else
+       all.take(10)
+    end
+ end
+ 
 private
 def picture_size
       if picture.size > 5.megabytes

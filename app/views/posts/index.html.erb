@@ -1,0 +1,12 @@
+<h1>検索</h1>
+<section id="posts-search">
+<%= form_tag(posts_path, :method => "get") do %>
+ <%= text_field_tag :search %> 
+<%= submit_tag "Search" ,class: "button is-info"%> 
+<% end %> 
+</section>
+
+<section id="posts-list">
+    <%= render @posts %>
+    <%= will_paginate %>
+</section>

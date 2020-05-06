@@ -2,6 +2,10 @@ class PostsController < ApplicationController
     before_action :auth_login
     before_action :correct_user, only: [:edit,:update, :destroy]
 
+def index
+    @posts=Post.paginate(page: params[:page]).search(params[:search])
+end
+
 def new
    @post=current_user.posts.build
 end
