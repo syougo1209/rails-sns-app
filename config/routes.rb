@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
 
+
+  get 'sessions/new'
+  
   root 'static_pages#home'
   get '/about', to:'static_pages#about'
   get '/signup', to: 'users#new'
@@ -16,4 +18,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :likes, only: [:create,:destroy]
   resources :comments, only: [:create, :destroy]
+  resources :rooms, only: [:show]
+  resources :entries, only: [:create]
+  mount ActionCable.server => '/cable'
 end

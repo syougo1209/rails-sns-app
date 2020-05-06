@@ -13,6 +13,10 @@ class User < ApplicationRecord
    has_many :like_posts, through: :likes, source: :post
    #コメント
     has_many :comments, dependent: :destroy 
+    #DM
+    has_many :entries, dependent: :destroy
+    has_many :messages, dependent: :destroy
+    
    
    mount_uploader :picture, PictureUploader
    validates :name, 

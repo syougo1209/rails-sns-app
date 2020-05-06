@@ -18,6 +18,7 @@
 <% else %>
 <%= render "shared/follow_form" %>
 <% end %>
+<%= render 'entries/entry_form' unless current_user?%>
 
 </section>
 <section class="post-list col-md-8">
