@@ -1,6 +1,11 @@
 class RoomsController < ApplicationController
-  def show
-   room=Room.find(params[:id])
-   @messages=room.messages.all
-  end
+    
+    def index
+        @rooms=current_user.rooms.paginate(page: params[:page])
+    end
+
+   def show
+    room=Room.find(params[:id])
+    @messages=room.messages.last(15)
+   end
 end

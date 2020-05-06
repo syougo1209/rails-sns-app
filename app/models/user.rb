@@ -16,7 +16,7 @@ class User < ApplicationRecord
     #DM
     has_many :entries, dependent: :destroy
     has_many :messages, dependent: :destroy
-    
+    has_many :rooms, through: :entries, source: :room
    
    mount_uploader :picture, PictureUploader
    validates :name, 
