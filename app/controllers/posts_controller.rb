@@ -55,9 +55,12 @@ def post_params
 end
 
 def correct_user
-     flash[:danger]="権限がありません"
-      @post = current_user.posts.find_by(id: params[:id])
-      redirect_to root_url if @post.nil?
+ @post = current_user.posts.find_by(id: params[:id])
+  if @post.nil?
+      flash[:danger]="権限がありません"
+      redirect_to root_url 
+  end
+      
   end
 
 
