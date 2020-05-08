@@ -17,7 +17,10 @@ class CommentsController < ApplicationController
 end
     
     def destroy
+     
+      post=Comment.find(params[:id]).post
       Comment.find(params[:id]).destroy
+      flash[:success] = "コメントの削除に成功しました"
       redirect_to post
     end
     
@@ -30,7 +33,9 @@ end
     def correct_user
         user=Comment.find(params[:id]).user
         post=Comment.find(params[:id]).post
+        if current_user != user
         flash[:danger]="権限がありません"
-        redirect_to post if current_user != user
+        redirect_to post 
+        end
     end
 end
