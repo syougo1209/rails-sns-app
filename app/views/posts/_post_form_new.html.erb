@@ -1,4 +1,4 @@
- <%= form_for(@post) do |f| %>
+<%= form_for(@post) do |f| %>
     <div class="form-group" >
     <%= render 'shared/error_messages', object: f.object%>
 
@@ -6,8 +6,8 @@
         <%= f.text_area :title,  class: 'form-control' %>
         <%= f.label :content, '感想などご自由にお書きください', class:'control-label' %>
         <%= f.text_area :content,  class: 'form-control', :size=>"60x10" %>
-        <%= f.hidden_field :latitude, {value: @post.latitude, id: "hidden_latitude"} %>
-        <%= f.hidden_field :longitude, {value: @post.longitude, id: "hidden_longitude"} %>
+        <%= f.hidden_field :latitude, {value:"", id: "hidden_latitude"} %>
+        <%= f.hidden_field :longitude, {value:"", id: "hidden_longitude"} %>
         <span class="post_picture">
        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'  %>
        </span>
@@ -15,9 +15,9 @@
   <%= f.submit '投稿', class: "btn btn-primary form-control mt-4" %>
   <% end %>
   <h2>gmap</h2>
- <div id="map2"></div>
+ <div id="map3"></div>
  <style>
-#map2{
+#map3{
 height: 500px;
 width: 500px;
 }
@@ -33,9 +33,6 @@ width: 500px;
          
           function(position) {
             // 緯度・経度を変数に格納
-           
-            if (<%= @post.id==nil %>){ //railsに保存されていないとき
-             
             var initLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
             // マップオプションを変数に格納
             var mapOptions = {
@@ -44,7 +41,7 @@ width: 500px;
             };
             // マップオブジェクト作成
             var map = new google.maps.Map(
-              document.getElementById("map2"), // マップを表示する要素
+              document.getElementById("map3"), // マップを表示する要素
               mapOptions         // マップオプション
             );
             //　マップにマーカーを表示する
@@ -59,37 +56,6 @@ width: 500px;
              marker.setPosition(myLatlng);
              
       });
-            }else{
-            
-             console.log(<%= @post.latitude %>)
-             console.log("edit")
-         
-             var latitude= <%= @post.latitude %>
-            var longitude= <%= @post.longitude %>
-             var initLatLng = new google.maps.LatLng(latitude,longitude);
-   
-             var mapOptions = {
-              zoom : 14,          // 拡大倍率
-              center : initLatLng  // 緯度・経度
-            };
-            var map = new google.maps.Map(
-              document.getElementById("map2"), // マップを表示する要素
-              mapOptions         // マップオプション
-            );
-            var marker = new google.maps.Marker({
-              map : map,             // 対象の地図オブジェクト
-              position : initLatLng   // 緯度・経度
-            });
-            map.addListener('click', function mylistener(event) {
-             document.getElementById('hidden_latitude').setAttribute("value",event.latLng.lat())
-             document.getElementById('hidden_longitude').setAttribute("value",event.latLng.lng())
-             var myLatlng = new google.maps.LatLng(event.latLng.lat(),event.latLng.lng());
-             marker.setPosition(myLatlng);
-      });
-            }
-             
-            
-            
           },
           // 取得失敗した場合
           function(error) {
@@ -117,4 +83,3 @@ width: 500px;
 
     </script>
   
- 

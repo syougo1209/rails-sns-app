@@ -12,6 +12,7 @@ end
 
 def create
     @post=current_user.posts.build(post_params)
+    
     if @post.save
       flash[:success]="投稿が成功しました"
       redirect_to @post
@@ -32,6 +33,7 @@ end
 def update
      @post=Post.find_by(id: params[:id]) 
     if @post.update_attributes(post_params)
+        
         flash[:success]="編集が成功しました"
         redirect_to @post
     else
@@ -49,7 +51,7 @@ end
 private 
 
 def post_params
-    params.require(:post).permit(:content,:title,:picture)
+    params.require(:post).permit(:content,:title,:picture,:latitude,:longitude)
 end
 
 def correct_user
