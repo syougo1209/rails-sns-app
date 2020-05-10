@@ -18,6 +18,8 @@ gem 'jbuilder',     '2.7.0'
 gem 'rails-i18n'
 gem 'font-awesome-sass'
 gem 'dotenv-rails'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
