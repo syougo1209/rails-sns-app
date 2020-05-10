@@ -1,0 +1,9 @@
+<h1>人気なスポットのランキング</h1>
+<section id="posts-search">
+<%= form_tag(ranking_posts_path,method:"get",id:'form1') do %>
+      <%= select_tag :search,options_for_select(@month_array), id: 'select' %>
+      <%= submit_tag "検索" ,class: "button is-info"%>
+      <% end %>
+</section>
+
+<%=render @posts %>

@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create,:destroy]
-  resources :posts
+  resources :posts do
+    collection do
+      get :ranking
+    end
+  end
   resources :likes, only: [:create,:destroy]
   resources :comments, only: [:create, :destroy]
   resources :rooms, only: [:show, :index]

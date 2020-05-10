@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     before_action :correct_user, only: [:edit,:update, :destroy]
 
 def index
-    @posts=Post.paginate(page: params[:page]).search(params[:search])
+    @posts=Post.order(created_at: :desc).paginate(page: params[:page]).search(params[:search])
 end
 
 def new
@@ -15,6 +15,7 @@ def create
     
     if @post.save
       flash[:success]="投稿が成功しました"
+      @post.update(created_date: @post.created_at.to_s(:datetime_jp))
       redirect_to @post
     else
         render 'new'
@@ -46,6 +47,14 @@ def destroy
     post.destroy
     flash[:success] = "投稿を削除しました"
     redirect_to root_path
+end
+
+def ranking
+    @month_array=[["すべての月"]]
+    (1..12).each do |i|
+        @month_array << ["#{i}月"]
+    end
+    @posts=Post.ranking(params[:search])
 end
 
 private 

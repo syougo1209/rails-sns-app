@@ -5,7 +5,6 @@ class Post < ApplicationRecord
   has_many :like_people, through: :likes, source: :user
   has_many :comments, dependent: :destroy 
    
-  default_scope -> { order(created_at: :desc) }
   mount_uploader :picture, PictureUploader
   
   validates :user_id, presence:true
@@ -20,6 +19,14 @@ class Post < ApplicationRecord
        all.take(10)
     end
  end
+ 
+ def self.ranking(search)
+  if search && search!="すべての月"
+    Post.joins(:likes).group(:post_id).where(['created_date LIKE ?', "%#{search}%"]).order('count(post_id) desc')
+  else
+    Post.find(Like.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+  end
+  end
  
 private
 def picture_size
