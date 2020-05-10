@@ -1,12 +1,14 @@
+<h1>ユーザー検索</h1>
+<section id="posts-search">
+<%= form_tag(users_path, :method => "get") do %>
+ <%= text_field_tag :search %> 
+<%= submit_tag "Search" ,class: "button is-info"%> 
+<% end %> 
+</section>
 
-<div class="row">
-    <section class="current_user_info col-md-3">
-        
-        <%= render 'user_info' %>
-    </section>
 
 
-<section class="users col-md-7">
+<section class="users">
     <h2 style="text-align: center">他のユーザー</h2>
     <%= render @users %>
     <%= will_paginate %>
