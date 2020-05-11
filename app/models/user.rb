@@ -60,11 +60,11 @@ def favorite?(favorite_post)
 end
 
  def self.search(search,prefecture) 
-     if search && prefecture
+     if search && prefecture!="都道府県を選択出来ます" && prefecture
        where(['name LIKE ?', "%#{search}%"]).where(prefecture: prefecture) 
-     elsif prefecture
+     elsif prefecture!="都道府県を選択出来ます" && prefecture
        where("prefecture=:prefecture", prefecture: prefecture)
-     elsif search
+     elsif search && prefecture=="都道府県を選択出来ます" && prefecture
        where(['name LIKE ?', "%#{search}%"])
      end
  end

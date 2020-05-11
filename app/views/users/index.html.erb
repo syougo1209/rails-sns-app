@@ -1,10 +1,20 @@
 <h1>ユーザー検索</h1>
 <section id="posts-search">
+    <div class="row">
 <%= form_tag(users_path, :method => "get") do %>
- <%= text_field_tag :search %>
- <%= text_field_tag :prefecture %>
-<%= submit_tag "Search" ,class: "button is-info"%> 
+ <div class="form-group ranking-form">
+<label for="search-post-form">キーワード</label>
+ <%= text_field_tag :search,"" ,class: "form-control",id: "search-post-form" %> 
+ </div>
+ <div class="form-group ranking-form">
+ <label for="place-post-form">県名</label>
+ <%= render "shared/prefecture_form" %>
+ </div>
+ <div>
+<%= submit_tag "検索" ,class: "post-search-buttton button btn-primary col-xs-offset-3 col-xs-6"%> 
+</div>
 <% end %> 
+</div>
 </section>
 
 
@@ -13,8 +23,6 @@
     <% if @users %>
     <%= render @users %>
     <%= will_paginate %>
-    <% else %>
-    <p>ユーザーを検索できます</p>
     <% end %>
 </section>
 </div>

@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
     before_action :auth_login
     before_action :correct_user, only: [:edit,:update, :destroy]
-
+    
+    
 def index
+    
     @posts=Post.order(created_at: :desc)
                .paginate(page: params[:page])
                .search(params[:search],params[:prefecture])
@@ -52,11 +54,13 @@ def destroy
 end
 
 def ranking
+    @month=params[:search]
+    @prefecture=params[:prefecture]
     @month_array=[["すべての月"]]
     (1..12).each do |i|
         @month_array << ["#{i}月"]
     end
-    @posts=Post.ranking(params[:search],params[:prefecture])
+    @posts=Post.ranking(@month,@prefecture)
 end
 
 private 
@@ -73,6 +77,5 @@ def correct_user
   end
       
   end
-
 
 end

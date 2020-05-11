@@ -1,0 +1,11 @@
+<% if @prefecture=="都道府県を選択出来ます" && @month=="すべての月" %>
+<h1 style="text-align: center">すべての人気スポット</h1>
+<% elsif @prefecture=="都道府県を選択出来ます" &&  @month!="すべての月" %>
+<h1 style="text-align: center"><%= @month %>の人気スポット</h1>
+<% elsif @prefecture!="都道府県を選択出来ます" &&  @month=="すべての月" %>
+<h1 style="text-align: center"><%= @prefecture %>の人気スポット</h1>
+<% elsif @prefecture!="都道府県を選択出来ます" &&  @month!="すべての月" && @prefecture%>
+<h1 style="text-align: center"><%=@month %>の<%= @prefecture %>の人気スポット</h1>
+<% else %>
+<h1 style="text-align: center">すべての人気なスポット</h1>
+<%end%>
