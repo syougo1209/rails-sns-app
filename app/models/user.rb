@@ -59,13 +59,13 @@ def favorite?(favorite_post)
  like_posts.include?(favorite_post)
 end
 
- def search(search) 
-     if search
-       User.where(['name LIKE ?', "%#{search}%"]) 
-     else
-       User.where("prefecture=:prefecture", prefecture: prefecture)
-    end
+ def self.search(search,prefecture) 
+     if search && prefecture
+       where(['name LIKE ?', "%#{search}%"]).where(prefecture: prefecture) 
+     elsif prefecture
+       where("prefecture=:prefecture", prefecture: prefecture)
+     elsif search
+       where(['name LIKE ?', "%#{search}%"])
+     end
  end
-
-
 end

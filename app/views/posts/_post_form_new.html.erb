@@ -8,6 +8,7 @@
         <%= f.text_area :content,  class: 'form-control', :size=>"60x10" %>
         <%= f.hidden_field :latitude, {value:"", id: "hidden_latitude"} %>
         <%= f.hidden_field :longitude, {value:"", id: "hidden_longitude"} %>
+        <%= f.hidden_field :address, {value:"", id: "hidden_address"} %>
         <span class="post_picture">
        <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'  %>
        </span>
@@ -15,6 +16,7 @@
   <%= f.submit '投稿', class: "btn btn-primary form-control mt-4" %>
   <% end %>
   <h2>gmap</h2>
+  <div id="address"></div>
  <div id="map3"></div>
  <style>
 #map3{
@@ -49,12 +51,33 @@ width: 500px;
               map : map,             // 対象の地図オブジェクト
               position : initLatLng   // 緯度・経度
             });
+           
+async function getAdrs(myLatlng){
+var ll = myLatlng
+var gc = new google.maps.Geocoder();
+
+const promise= new Promise((resolve, reject) =>gc.geocode({ location : ll }, function(results, status){
+if (status == google.maps.GeocoderStatus.OK) {
+ var address = results[0].formatted_address+"付近" 
+ 
+document.getElementById("address").innerHTML = address;
+resolve(address)
+}else{
+alert(status+" : ジオコードに失敗しました");
+}
+})
+);
+var address= await promise
+document.getElementById('hidden_address').setAttribute("value",address)
+}
+
             map.addListener('click', function mylistener(event) {
+              console.log("change")
              document.getElementById('hidden_latitude').setAttribute("value",event.latLng.lat())
              document.getElementById('hidden_longitude').setAttribute("value",event.latLng.lng())
              var myLatlng = new google.maps.LatLng(event.latLng.lat(),event.latLng.lng());
              marker.setPosition(myLatlng);
-             
+             getAdrs(myLatlng);
       });
           },
           // 取得失敗した場合
@@ -80,6 +103,6 @@ width: 500px;
       } else {
         alert("この端末では位置情報が取得できません");
       }  
-
+      
     </script>
   

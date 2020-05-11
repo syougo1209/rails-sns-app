@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200510080843) do
+ActiveRecord::Schema.define(version: 20200510132021) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20200510080843) do
     t.float "latitude"
     t.float "longitude"
     t.string "created_date"
+    t.string "address"
     t.index ["title"], name: "index_posts_on_title"
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_posts_on_user_id"

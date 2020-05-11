@@ -12,19 +12,38 @@ class Post < ApplicationRecord
   validates :title,   presence:true, length: { maximum: 50 }
   validate  :picture_size
 
-  def self.search(search) 
-     if search
-       where(['content LIKE ?', "%#{search}%"]) 
-     else
-       all.take(10)
-    end
+  def self.search(search,prefecture) 
+     if search && prefecture
+       where(['content LIKE ?', "%#{search}%"]).where(['address LIKE ?', "%#{prefecture}%"])  
+     elsif search
+       where(['content LIKE ?', "%#{search}%"])
+     elsif prefecture
+         where(['address LIKE ?', "%#{prefecture}%"]) 
+     end
  end
  
- def self.ranking(search)
-  if search && search!="すべての月"
-    Post.joins(:likes).group(:post_id).where(['created_date LIKE ?', "%#{search}%"]).order('count(post_id) desc')
+ def self.ranking(search,prefecture)
+  if search!="すべての月" && prefecture!="都道府県を選択出来ます" && search && prefecture
+    Post.joins(:likes)
+    .group(:post_id)
+    .where(['address LIKE ?', "%#{prefecture}%"])
+    .where(['created_date LIKE ?', "%#{search}%"])
+    .order('count(post_id) desc')
+    .order('created_at desc')
+  elsif search!="すべての月" && prefecture=="都道府県を選択出来ます" && search && prefecture
+      Post.joins(:likes)
+    .group(:post_id)
+    .where(['created_date LIKE ?', "%#{search}%"])
+    .order('count(post_id) desc')
+    .order('created_at desc')
+  elsif search=="すべての月" && prefecture!="都道府県を選択出来ます" && search && prefecture
+    Post.joins(:likes)
+    .group(:post_id)
+    .where(['address LIKE ?', "%#{prefecture}%"])
+    .order('count(post_id) desc')
+    .order('created_at desc')
   else
-    Post.find(Like.group(:post_id).order('count(post_id) desc').limit(10).pluck(:post_id))
+      Post.find(Like.group(:post_id).order('count(post_id) desc').order('created_at desc').limit(10).pluck(:post_id))
   end
   end
  

@@ -1,8 +1,21 @@
-      <header class="navbar navbar-fixed-top navbar-inverse">
+ <header class="navbar navbar-fixed-top navbar-default" id="navbar-top">
   <div class="container-header">
-    <%= link_to "sample app", root_path, id: "logo" %>
+   <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- 追記ここまで-->
+
+      <%= link_to "sample app", root_path, id: "logo" %>
+
+    <!-- 追記ここから-->
+    </div>
     <nav>
-      <ul class="nav navbar-nav navbar-right">
+      <ul id="navbar" class="nav navbar-nav navbar-right navbar-collapse collapse">
         <% if login? %>
         <li><%= link_to "home",   root_path %></li>
         <li><%= link_to "about",   about_path %></li>
@@ -36,4 +49,3 @@
     </nav>
   </div>
 </header>
-

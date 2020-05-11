@@ -3,7 +3,9 @@ class PostsController < ApplicationController
     before_action :correct_user, only: [:edit,:update, :destroy]
 
 def index
-    @posts=Post.order(created_at: :desc).paginate(page: params[:page]).search(params[:search])
+    @posts=Post.order(created_at: :desc)
+               .paginate(page: params[:page])
+               .search(params[:search],params[:prefecture])
 end
 
 def new
@@ -54,13 +56,13 @@ def ranking
     (1..12).each do |i|
         @month_array << ["#{i}月"]
     end
-    @posts=Post.ranking(params[:search])
+    @posts=Post.ranking(params[:search],params[:prefecture])
 end
 
 private 
 
 def post_params
-    params.require(:post).permit(:content,:title,:picture,:latitude,:longitude)
+    params.require(:post).permit(:content,:title,:picture,:latitude,:longitude,:address)
 end
 
 def correct_user

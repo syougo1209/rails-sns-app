@@ -3,7 +3,8 @@ class UsersController < ApplicationController
     before_action :limit_action_from_other_user, only: [:edit, :update, :destroy]
     
     def index
-       @users=current_user.search(params[:search]).paginate(page: params[:page])
+       @users=User.paginate(page: params[:page])
+                  .search(params[:search],params[:prefecture])
     end
     
   def new

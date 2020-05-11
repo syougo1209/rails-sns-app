@@ -1,7 +1,8 @@
 <h1>ユーザー検索</h1>
 <section id="posts-search">
 <%= form_tag(users_path, :method => "get") do %>
- <%= text_field_tag :search %> 
+ <%= text_field_tag :search %>
+ <%= text_field_tag :prefecture %>
 <%= submit_tag "Search" ,class: "button is-info"%> 
 <% end %> 
 </section>
@@ -9,8 +10,11 @@
 
 
 <section class="users">
-    <h2 style="text-align: center">他のユーザー</h2>
+    <% if @users %>
     <%= render @users %>
     <%= will_paginate %>
+    <% else %>
+    <p>ユーザーを検索できます</p>
+    <% end %>
 </section>
 </div>

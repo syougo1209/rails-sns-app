@@ -36,12 +36,16 @@
 
 </section>
 
+<% if @post.address %>
 <section class="other-post col-md-5">
     <h2>gmap</h2>
+    <div id="address"><%= @post.address %></div>
     <div id="map1"></div>
-    
 </section>
+<% end %>
+
 </div>
+
 <style>
 #map1{
   height: 500px;
@@ -62,5 +66,6 @@ var map1 = new google.maps.Map(mapDiv1, opts1);
  var marker = new google.maps.Marker({
               map : map1,             // 対象の地図オブジェクト
               position : LatLng   // 緯度・経度
-            });
+            })
+
     </script>

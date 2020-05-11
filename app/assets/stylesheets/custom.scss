@@ -1,11 +1,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome-sprockets";
- @import "font-awesome";
+@import "font-awesome";
 //初期設定
 .container{
  margin-top: 100px; 
 }
+.navbar{
+ box-shadow: 0px 0px 2px;
+ padding: 10px;
+}
+
 a{
 color: #696969;
 } 
@@ -194,3 +199,15 @@ background: none;
  margin-top: 20px;
 }
 
+//ranking
+.ranking-form{
+ width: 80%;
+ margin: 0 auto;
+ margin-top: 20px;
+}
+.ranking-form-button{
+ margin-top: 40px;
+}
+#month-select-form{
+ margin-top: 40px;
+}
