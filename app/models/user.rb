@@ -65,8 +65,15 @@ end
        where(['name LIKE ?', "%#{search}%"]).where(prefecture: prefecture) 
      elsif prefecture!="都道府県を選択出来ます" && prefecture
        where("prefecture=:prefecture", prefecture: prefecture)
-     elsif search && prefecture=="都道府県を選択出来ます" && prefecture
+     elsif search!="" && prefecture=="都道府県を選択出来ます" && search
        where(['name LIKE ?', "%#{search}%"])
      end
  end
+ 
+ def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
+
 end

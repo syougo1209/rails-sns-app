@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   
   validates :user_id, presence:true
   validates :content, presence: true, length: { maximum: 140 }
-  validates :title,   presence:true, length: { maximum: 50 }
+  validates :title,   presence: true, length: { maximum: 50 }
   validate  :picture_size
 
   def self.search(search,prefecture) 

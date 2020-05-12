@@ -35,4 +35,12 @@ test "password should be relatively long" do
   assert_not @user.valid?
 end
 
+test "associated post should be destroyed" do
+    @user.save
+    @user.posts.create!(content:"aaaa",title: "aaaaa")
+    assert_difference 'Post.count', -1 do
+        @user.destroy
+    end
+end
+
 end
