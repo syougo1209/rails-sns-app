@@ -21,7 +21,8 @@ class User < ApplicationRecord
    mount_uploader :picture, PictureUploader
    validates :name, 
    presence: true,
-   length: { maximum: 20 }
+   length: { maximum: 20 },
+   uniqueness: true;
    #uniqueness: true
    
    has_secure_password
