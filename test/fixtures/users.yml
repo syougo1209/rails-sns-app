@@ -10,7 +10,7 @@ jon:
   name: Jon Mac
   password_digest: <%= User.digest('password') %>
   prefecture: 神奈川県
-  
+  id: 1
 <% 30.times do |n| %>
 user_<%= n %>:
   name:  <%= "User #{n}" %>

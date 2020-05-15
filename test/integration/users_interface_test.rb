@@ -51,22 +51,38 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
   
+  test "users detail test" do
+    log_in_as(@user)
+    get user_path(@user)
+    assert_select "a[href=?]",edit_user_path(@user)
+    assert_select 'img'
+    assert_select 'div.pagination'
+    assert_select "a[href=?]",following_user_path(@user)
+    assert_select "a[href=?]",followers_user_path(@user)
+    get user_path(@other_user)
+    assert_select "a[href=?]",edit_user_path(@other_user),count: 0
+    assert_select "a[href=?]",following_user_path(@other_user)
+    assert_select "a[href=?]",followers_user_path(@other_user)
+    end
+  
   test "user search page moves correctly?" do
     log_in_as(@user)
-    get users_path
-    assert_template 'users/index'
-    get users_path, params: { prefecture: "東京都", search: "Nick"}
-    assert_select "a[href=?]",user_path(@other_user),count: 0
-    get users_path, params: { prefecture: "鳥取県", search: "Nick"}
-    assert_select "a[href=?]",user_path(@other_user)
-    get users_path, params: { prefecture: "東京都"}
+     get users_path
+     assert_template 'users/index'
+     get users_path, params: { prefecture: "東京都", search: "Nick"}
+     assert_select "a[href=?]",user_path(@other_user),count: 0
+     get users_path, params: { prefecture: "鳥取県", search: "Nick"}
+     assert_select "a[href=?]",user_path(@other_user)
+     get users_path, params: { prefecture: "東京都"}
      assert_select "a[href=?]",user_path(@other_user),count: 0
      assert_select "div.pagination"
-    get users_path, params: { search: "Nick",prefecture: "都道府県を選択出来ます"}
-    assert_select "a[href=?]",user_path(@other_user)
-    assert_select "div.pagination",count: 0
-    get users_path
+     get users_path, params: { search: "Nick",prefecture: "都道府県を選択出来ます"}
+     assert_select "a[href=?]",user_path(@other_user)
+     assert_select "div.pagination",count: 0
+     get users_path
      assert_select "a[href=?]",user_path(@other_user), count: 0
      assert_select "div.pagination", count: 0
    end
+   
 end
+

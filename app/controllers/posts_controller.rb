@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :auth_login
+    before_action :auth_login,only: [:edit,:update,:destroy,:new,:create]
     before_action :correct_user, only: [:edit,:update, :destroy]
     
     

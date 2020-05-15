@@ -46,4 +46,19 @@ class PostTest < ActiveSupport::TestCase
     assert @post.valid?
   end
   
+  test "associated like is destroyed" do
+   @post.save
+   @user.likes.create!(post_id: @post.id)
+   assert_difference 'Like.count', -1 do
+     @post.destroy
+   end
+  end
+  
+  test "associated comment is destroyed in post" do
+    @post.save
+    @user.comments.create!(content: "ruby",post_id: @post.id)
+    assert_difference 'Comment.count', -1 do
+     @post.destroy
+   end
+  end
 end

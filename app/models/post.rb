@@ -13,11 +13,11 @@ class Post < ApplicationRecord
   validate  :picture_size
 
   def self.search(search,prefecture) 
-     if search && prefecture
+     if search!="" && prefecture!="" && search && prefecture
        where(['content LIKE ?', "%#{search}%"]).where(['address LIKE ?', "%#{prefecture}%"])  
-     elsif search
+     elsif search!="" && search
        where(['content LIKE ?', "%#{search}%"])
-     elsif prefecture
+     elsif prefecture!="" && prefecture
          where(['address LIKE ?', "%#{prefecture}%"]) 
      end
  end

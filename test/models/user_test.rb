@@ -8,9 +8,11 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user=User.new(name: "Example User",prefecture:"東京都",
                    password: "password",password_confirmation:"password")
+    @post=posts(:orange)
   end
  
  test "should be valid" do
+     
    @user.valid?
  end
  
@@ -43,4 +45,35 @@ test "associated post should be destroyed" do
     end
 end
 
+test "associated like relation should be destroyed" do
+    @user.save
+    @user.likes.create!(post_id: 1)
+    assert_difference 'Like.count', -1 do
+        @user.destroy
+    end
+ end
+ 
+ test "associated user relationships should be destroyed" do
+ @user.save
+ @user.active_relationships.create!(followed_id: 1)
+ assert_difference 'Relationship.count', -1 do
+        @user.destroy
+    end
+end
+
+test "associated messages should be destroyed" do
+    @user.save
+    @user.comments.create!(content: "hello",post_id: 1)
+    assert_difference 'Comment.count', -1 do
+        @user.destroy
+    end
+end
+
+test "associated message should be destroyed" do
+    @user.save
+    @user.messages.create!(content: "hello",room_id: 1)
+    assert_difference 'Message.count', -1 do
+        @user.destroy
+    end
+end
 end

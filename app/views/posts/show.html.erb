@@ -17,14 +17,16 @@
     <%= image_tag @post.picture.url,class: "post-show-image" if @post.picture? %>
      </div>
      <div id="post-show-favorite">
-         <%= render 'shared/favorite_form' %><p id="post-showfavorite-number"><%= @post.like_people.count %>いいね</p>
+     <% if login? %>    <%= render 'shared/favorite_form' %><% end %><p id="post-showfavorite-number"><%= @post.like_people.count %>いいね</p>
          </div>
          
     <%= simple_format(@post.content) %>
     
     </section>
 <section id="comments-area">
+    <% if login? %>
     <%=render 'comments/comments_form' %>
+    <% end %>
     <div id="comment-area">
         <%= @comments.count %>件のコメント
         <ul class="list-group">
