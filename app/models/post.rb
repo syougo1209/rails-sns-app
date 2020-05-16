@@ -25,25 +25,26 @@ class Post < ApplicationRecord
  def self.ranking(search,prefecture)
   if search!="すべての月" && prefecture!="都道府県を選択出来ます" && search && prefecture
     Post.joins(:likes)
-    .group(:post_id,:created_at)
+    .group(:post_id)
     .where(['address LIKE ?', "%#{prefecture}%"])
     .where(['created_date LIKE ?', "%#{search}%"])
     .order('count(post_id) desc')
-    .order('created_at desc').order(nil)
+    .order('Post.created_at desc').order(nil)
   elsif search!="すべての月" && prefecture=="都道府県を選択出来ます" && search && prefecture
       Post.joins(:likes)
-    .group(:post_id,:created_at)
+    .group(:post_id)
     .where(['created_date LIKE ?', "%#{search}%"])
     .order('count(post_id) desc')
-    .order('created_at desc').order(nil)
+    .order('Post.created_at desc').order(nil)
   elsif search=="すべての月" && prefecture!="都道府県を選択出来ます" && search && prefecture
     Post.joins(:likes)
-    .group(:post_id,:created_at)
+    .group(:post_id)
     .where(['address LIKE ?', "%#{prefecture}%"])
     .order('count(post_id) desc')
-    .order('created_at desc').order(nil)
+    .order('Post.created_at desc').order(nil)
   else
-      Post.find(Like.group(:post_id).order('count(post_id) desc').order('created_at desc').order(nil).limit(10).pluck(:post_id))
+      Post.where(id: Like.group(:post_id).order('count(post_id) desc').order(nil).limit(10).pluck(:post_id))
+          .order('created_at desc')
   end
   end
  
