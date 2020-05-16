@@ -33,7 +33,10 @@ class User < ApplicationRecord
                      WHERE follower_id = :user_id"
     Post.where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
-
+ end
+ 
+ def like_posts_feed
+     like_posts.includes(:likes).order("likes.created_at desc")
  end
  
 def follow(other_user)

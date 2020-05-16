@@ -31,4 +31,10 @@ class LikesInterfaceTest < ActionDispatch::IntegrationTest
      assert likeposts.include?(@like_post)
      assert_equal likeposts[0], @like_post
   end
+  
+  test "logout state should not see like form" do
+      get post_path(@like_post)
+      assert_match @like_post.content, response.body
+      assert_select 'i', count: 0
+  end
 end
