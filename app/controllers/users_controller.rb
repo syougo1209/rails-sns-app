@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def show
     @user=User.find(params[:id])
     @posts=@user.posts.order(created_at: :desc).paginate(page: params[:page])
-    @likeposts=@user.like_posts.order(created_at: :desc).paginate(page: params[:page])
+    @likeposts=@user.like_posts.includes(:likes).order("likes.created_at desc").paginate(page: params[:page])
   end
   
   def edit

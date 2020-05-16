@@ -43,8 +43,10 @@ class Post < ApplicationRecord
     .order('count(post_id) desc')
     .order('created_at desc').order(nil)
   else
-      Post.where(id: Like.group(:post_id).order('count(post_id) desc').order(nil).limit(10).pluck(:post_id))
-          .order('created_at desc')
+     Post.joins(:likes)
+    .group(:id)
+    .order('count(post_id) desc')
+    .order('created_at desc').order(nil)
   end
   end
  

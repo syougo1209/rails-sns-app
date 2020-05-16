@@ -31,14 +31,14 @@ shinagawa:
 most_recent:
   content: "Writing a short test"
   created_at: <%= Time.zone.now %>
-  user: nick
-  
+  user_id: 2
+  id: 5
 apple:
   id: 4
   content: "feed"
   created_at: <%= 10.minutes.ago %>
   address: "de"
-  user: jon
+  user_id: 1
   
 <% 30.times do |n| %>
 post_<%= n %>:
@@ -53,5 +53,5 @@ nick_post_<%= n %>:
   content: "hello"
   created_at: <%= 42.days.ago %>
   address: "feed"
-  user: jon
+  user_id: 1
 <% end %>

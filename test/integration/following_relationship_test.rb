@@ -76,5 +76,23 @@ class FollowingRelationshipTest < ActionDispatch::IntegrationTest
     end
     assert_match "フォロー", response.body
   end
-
+  
+  test "feed test" do
+     mypost=posts(:apple)
+     other_post=posts(:most_recent)
+     @user.reload
+     get root_path
+     posts=assigns(:posts)
+     assert posts.include?(mypost)
+     assert_not posts.include?(other_post)
+     assert_select 'div.pagination'
+     @user.follow(@other_user)
+     @user.reload
+     posts.reload
+     assert posts.include?(mypost)
+     assert posts.include?(other_post)
+     assert_select 'div.pagination'
+     posts.include?(other_post)
+     assert_equal posts[0], other_post
+  end
 end
