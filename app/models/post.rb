@@ -29,21 +29,21 @@ class Post < ApplicationRecord
     .where(['address LIKE ?', "%#{prefecture}%"])
     .where(['created_date LIKE ?', "%#{search}%"])
     .order('count(post_id) desc')
-    .order('created_at desc')
+    .order('created_at desc').order(nil)
   elsif search!="すべての月" && prefecture=="都道府県を選択出来ます" && search && prefecture
       Post.joins(:likes)
     .group(:post_id)
     .where(['created_date LIKE ?', "%#{search}%"])
     .order('count(post_id) desc')
-    .order('created_at desc')
+    .order('created_at desc').order(nil)
   elsif search=="すべての月" && prefecture!="都道府県を選択出来ます" && search && prefecture
     Post.joins(:likes)
     .group(:post_id)
     .where(['address LIKE ?', "%#{prefecture}%"])
     .order('count(post_id) desc')
-    .order('created_at desc')
+    .order('created_at desc').order(nil)
   else
-      Post.find(Like.group(:post_id).order('count(post_id) desc').order('created_at desc').limit(10).pluck(:post_id))
+      Post.find(Like.group(:post_id).order('count(post_id) desc').order('created_at desc').order(nil).limit(10).pluck(:post_id))
   end
   end
  
