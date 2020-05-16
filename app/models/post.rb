@@ -25,20 +25,20 @@ class Post < ApplicationRecord
  def self.ranking(search,prefecture)
   if search!="すべての月" && prefecture!="都道府県を選択出来ます" && search && prefecture
     Post.joins(:likes)
-    .group(:post_id)
+    .group(:post_id,:created_at)
     .where(['address LIKE ?', "%#{prefecture}%"])
     .where(['created_date LIKE ?', "%#{search}%"])
     .order('count(post_id) desc')
     .order('created_at desc').order(nil)
   elsif search!="すべての月" && prefecture=="都道府県を選択出来ます" && search && prefecture
       Post.joins(:likes)
-    .group(:post_id)
+    .group(:post_id,:created_at)
     .where(['created_date LIKE ?', "%#{search}%"])
     .order('count(post_id) desc')
     .order('created_at desc').order(nil)
   elsif search=="すべての月" && prefecture!="都道府県を選択出来ます" && search && prefecture
     Post.joins(:likes)
-    .group(:post_id)
+    .group(:post_id,:created_at)
     .where(['address LIKE ?', "%#{prefecture}%"])
     .order('count(post_id) desc')
     .order('created_at desc').order(nil)
