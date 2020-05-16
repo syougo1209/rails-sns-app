@@ -20,7 +20,7 @@ def create
     if @post.save
       flash[:success]="投稿が成功しました"
       @post.update(created_date: @post.created_at.to_s(:datetime_jp))
-      redirect_to @post
+      redirect_to root_path
     else
         render 'new'
     end
@@ -40,7 +40,7 @@ def update
     if @post.update_attributes(post_params)
         
         flash[:success]="編集が成功しました"
-        redirect_to @post
+        redirect_to root_path
     else
         render 'edit'
     end

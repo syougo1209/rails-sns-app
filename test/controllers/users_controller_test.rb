@@ -52,4 +52,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
   
+  test "should redirect when access to following if not login" do
+    get following_user_path(@user)
+    assert_not flash.empty?
+    assert_redirected_to login_path
+  end
+  
+  test "should redirect when access to followers if not login" do
+    get followers_user_path(@user)
+    assert_not flash.empty?
+    assert_redirected_to login_path
+  end
 end

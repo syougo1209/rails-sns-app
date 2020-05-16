@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :auth_login, only: [:edit, :update, :destroy]
+    before_action :auth_login, only: [:edit, :update, :destroy,:following,:followers]
     before_action :limit_action_from_other_user, only: [:edit, :update, :destroy]
     
     def index

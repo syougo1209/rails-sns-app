@@ -20,13 +20,10 @@ class PostsInterfaceTest < ActionDispatch::IntegrationTest
      assert_difference 'Post.count', 1 do
       post posts_path, params: { post: { content: "hello",title:"hello" } }
     end
-    assert_redirected_to post_path(Post.last)
+    assert_redirected_to root_path
     follow_redirect!
     assert_select "div#map1", count: 0
-    assert_select 'img',count: 1 #userimage(default)
     assert_match Post.last.content, response.body
-    assert_select 'a[href=?]', edit_post_path(Post.last)
-    assert_select 'a', text: "投稿の削除"
     get edit_post_path(Post.last)
     patch post_path(Post.last),params: {post: {content: "",title:""}}
     assert_select 'div#error_explanation'
@@ -35,10 +32,8 @@ class PostsInterfaceTest < ActionDispatch::IntegrationTest
                                                   latitude: 154,longitude: 130,
                                                   picture: picture,address: "横須賀市"
                                                        } }
-    assert_redirected_to post_path(Post.last)
+    assert_redirected_to root_path
     follow_redirect!
-    assert_select 'div#map1'
-    assert_select 'img',count: 2
     delete post_path(Post.last)
     assert_redirected_to root_path
     follow_redirect!
