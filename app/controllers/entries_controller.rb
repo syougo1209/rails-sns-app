@@ -1,4 +1,5 @@
 class EntriesController < ApplicationController
+    before_action :auth_login
     
     def create
         user=User.find(params[:user_id])

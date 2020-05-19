@@ -2,6 +2,9 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
   connected: function() {
     console.log('connected')
     // Called when the subscription is ready for use on the server
+    const button = document.getElementById('button')
+    button.disabled=false
+    button.textContent="送信"
   },
 
   disconnected: function() {
@@ -24,9 +27,11 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
 document.addEventListener('DOMContentLoaded', function(){
   const input = document.getElementById('chat-input')
   const button = document.getElementById('button')
+  button.disabled=true
+  button.textContent="接続中"
   const data_user = input.getAttribute("data_user")
    const data_room = input.getAttribute("data_room")
-  button.addEventListener('click', function(){
+  　button.addEventListener('click', function(){
     const content = input.value
     App.room.speak(content,data_user,data_room)
     input.value = ''
