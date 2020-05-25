@@ -38,7 +38,6 @@ end
 def update
      @post=Post.find_by(id: params[:id]) 
     if @post.update_attributes(post_params)
-        
         flash[:success]="編集が成功しました"
         redirect_to root_path
     else
