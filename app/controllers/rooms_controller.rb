@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
     end
 
    def show
-    room=Room.find(params[:id])
-    @messages=room.messages.last(15)
+    room=Room.find(params[:id]);
+    @messages=room.messages.last(6);
    end
 end

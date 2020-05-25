@@ -9,7 +9,8 @@ App.room = App.cable.subscriptions.create("RoomChannel", {
 
   disconnected: function() {
     // Called when the subscription has been terminated by the server
-    
+    console.log("disconnected")
+    window.location.reload();
   },
 
   received: function(message) {
@@ -37,3 +38,4 @@ document.addEventListener('DOMContentLoaded', function(){
     input.value = ''
   })
 })
+
