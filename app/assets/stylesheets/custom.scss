@@ -4,7 +4,9 @@
 @import "font-awesome";
 //初期設定
 .container{
- margin-top: 100px; 
+ margin-top: 50px;
+ width: 100%;
+ padding: 0;
 }
 .navbar{
  box-shadow: 0px 0px 2px;
@@ -18,6 +20,30 @@ a:hover{
 color: #808080;
 text-decoration:none
 }
+//ホームのイメージ
+#home-img{
+width: 100%;
+}
+
+#home-img-container{
+ width: 100%;
+ position: relative;
+}
+#home-img-container .btn{
+ position: absolute;
+ top: 60%;
+ left: 45%;
+ margin: 0;
+}
+#home-img-container h3{
+ position: absolute;
+ top: 40%;
+ left: 33%;
+ color: white;
+ text-align: center;
+}
+
+
 //新規ユーザーフォーム
 .title{
 margin-top: 100px;
