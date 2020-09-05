@@ -1,0 +1,22 @@
+<section class="post-list col-md-8">
+    <div id="post-menu">
+    <strong id="user-post-number"><%=@user.posts.count %>件の投稿</strong>
+    <strong id="user-favorite-number"><%=@user.like_posts.count %>件のお気に入り</strong>
+    </div>
+    <div id="users_posts">
+   <%= render 'shared/feed'%>
+   </div>
+   
+</section>
+
+<script type="text/javascript">
+
+  $("#user-post-number").on("click", function(){
+       
+ $("#users_posts").html("<%= escape_javascript(render('shared/feed')) %>");
+});
+  $("#user-favorite-number").on("click", function(){
+     
+ $("#users_posts").html("<%= escape_javascript(render('users/user_favorites')) %>");
+});
+</script>

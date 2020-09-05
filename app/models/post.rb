@@ -49,6 +49,10 @@ class Post < ApplicationRecord
     .order('created_at desc').order(nil)
   end
   end
+  
+  def self.tag_post(tag)
+    Post.where("tag=?",tag)
+  end
  
 private
 def picture_size

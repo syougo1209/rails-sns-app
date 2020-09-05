@@ -4,7 +4,7 @@
 @import "font-awesome";
 //初期設定
 .container{
- margin-top: 50px;
+ margin-top: 100px;
  width: 100%;
  padding: 0;
 }
@@ -55,6 +55,15 @@ margin-top: 100px;
 }
 .control-label{
  margin-top:20px;   
+}
+
+//ログイン中のホーム
+#tag-config-select,#tag-back-to-home{
+ cursor: pointer;
+ color: #d3d3d3;
+}
+.delete-tag{
+ display: none;
 }
 
 //エラー

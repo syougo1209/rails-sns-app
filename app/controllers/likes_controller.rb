@@ -10,7 +10,6 @@ class LikesController < ApplicationController
         end
     end
     
-    
     def destroy
         @post = Like.find(params[:id]).post
     current_user.unfavorite(@post)

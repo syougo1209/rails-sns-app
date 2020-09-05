@@ -2,9 +2,11 @@
     <div class="form-group" >
     <%= render 'shared/error_messages', object: f.object%>
 
-       <%= f.label :title, 'タイトル', class:'control-label' %>
-        <%= f.text_area :title,  class: 'form-control' %>
-        <%= f.label :content, '感想などご自由にお書きください', class:'control-label' %>
+       <%= f.label :title, 'タイトル', class:'control-label'%>
+        <%= f.text_area :title,  class: 'form-control'%>
+        <%= f.label :tag, 'タグを追加するといろいろな人から見られやすくなります(例: 海,山など)', class:'control-label' %>
+        <%= f.text_area :tag,  class: 'form-control' %>
+        <%= f.label :content, '内容', class:'control-label' %>
         <%= f.text_area :content,  class: 'form-control', :size=>"60x10" %>
         <%= f.hidden_field :latitude, {value:"", id: "hidden_latitude"} %>
         <%= f.hidden_field :longitude, {value:"", id: "hidden_longitude"} %>
@@ -15,7 +17,7 @@
     </div>
   <%= f.submit '投稿', class: "btn btn-primary form-control mt-4" %>
   <% end %>
-  <h2>gmap</h2>
+  <h2>マップをクリックして投稿場所の位置情報を追加できます</h2>
   <div id="address"></div>
  <div id="map3"></div>
  <style>

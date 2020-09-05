@@ -9,10 +9,45 @@
    <div class="user-name">
 <%= current_user.name %>
 </div>
+<%= link_to "ユーザー情報の編集", edit_user_path(@current_user), class: "btn btn-success" %>
 <div class="show-user-pref ">
 <%= current_user.prefecture %>
+</div>
+
 </div>
 <div class="follow">
     <%= render "shared/follow_info" %>
 </div>
+<div id="show-user-tags">
+<% if current_user.tags %>
+<p>あなたのタグ一覧</p>
+<div id="user-tags">
+<%= render @tags %>
 </div>
+<% end %> 
+
+</div>
+
+<div id="tag-select">
+<p id="tag-config-select">タグの設定（タグを設定すると設定されたタグの記事が見やすくなります)</p>
+<p id='tag-back-to-home'></p>
+</div>
+<div id="tag-config">
+</div>
+
+
+<script type="text/javascript">
+    $("#tag-config-select").on("click", function(){
+    $("#tag-config-select").html("");  
+    $("#tag-back-to-home").html("戻る");   
+    $("#tag-config").html("<%= escape_javascript(render('tags/tag_form')) %>");
+    $(".delete-tag").css("display","inline")
+    });
+
+  $("#tag-back-to-home").on("click", function(){
+    $("#tag-config-select").html("ジャンルの設定");  
+    $("#tag-back-to-home").html("");  
+    $("#tag-config").html('');
+    $(".delete-tag").css("display","none")
+  });
+</script>

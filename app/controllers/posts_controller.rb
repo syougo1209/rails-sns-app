@@ -62,10 +62,11 @@ def ranking
     @posts=Post.ranking(@month,@prefecture)
 end
 
+
 private 
 
 def post_params
-    params.require(:post).permit(:content,:title,:picture,:latitude,:longitude,:address)
+    params.require(:post).permit(:content,:title,:picture,:latitude,:longitude,:address,:tag)
 end
 
 def correct_user

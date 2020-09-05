@@ -7,14 +7,13 @@ class CommentsController < ApplicationController
         comment=current_user.comments.build(comment_params)
         if comment.save
             flash[:success]="コメントの追加に成功"
-
            redirect_to @post
         else
         @comments=@post.comments.paginate(page: params[:page])
         flash.now[:danger]="コメントが短すぎる、もしくは長すぎます"
          render 'posts/show'
     end
-end
+  end
     
     def destroy
       post=Comment.find(params[:id]).post

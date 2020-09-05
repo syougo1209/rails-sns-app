@@ -1,0 +1,12 @@
+<% if @tags.length >5 %>
+<div>好きなジャンルは5個まで追加できます.</div>
+<% else %>
+<%= form_for(@new_tag) do |f| %>
+<div class="form-group" >
+<%= render 'shared/error_messages', object: f.object %>
+<%= f.label :tag_name, '好きなジャンル', class:'control-label' %>
+<%= f.text_field :tag_name,  class: 'form-control' %>
+</div>
+<%= f.submit 'ジャンルの追加', class: "btn btn-primary form-control mt-4" %>
+<% end %>
+<% end %>

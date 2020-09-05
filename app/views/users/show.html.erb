@@ -13,34 +13,11 @@
 <div class="follow">
     <%= render "shared/follow_info" %>
 </div>
-<% if current_user? %>
-<%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %>
-<% else %>
+
 <%= render "shared/follow_form" %>
-<% end %>
 <%= render 'entries/entry_form' unless current_user?%>
 
 </section>
-<section class="post-list col-md-8">
-    <div id="post-menu">
-    <strong id="user-post-number"><%=@user.posts.count %>件の投稿</strong>
-    <strong id="user-favorite-number"><%=@user.like_posts.count %>件のお気に入り</strong>
-    </div>
-    <div id="users_posts">
-   <%= render 'shared/feed'%>
-   </div>
-   
-</section>
+<%= render "shared/favandfeed" %>
 </div> 
 
-<script type="text/javascript">
-
-  $("#user-post-number").on("click", function(){
-       
- $("#users_posts").html("<%= escape_javascript(render('shared/feed')) %>");
-});
-  $("#user-favorite-number").on("click", function(){
-     
- $("#users_posts").html("<%= escape_javascript(render('users/user_favorites')) %>");
-});
-</script>

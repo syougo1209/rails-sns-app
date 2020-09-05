@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'sessions/new'
   
   root 'static_pages#home'
-  get '/about', to:'static_pages#about'
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
@@ -23,5 +22,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy]
   resources :rooms, only: [:show, :index]
   resources :entries, only: [:create]
+  resources :tags, only: [:create,:destroy,:show]
+  
   mount ActionCable.server => '/cable'
 end
