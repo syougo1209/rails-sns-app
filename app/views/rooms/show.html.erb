@@ -1,14 +1,12 @@
 <h1>chatroom</h1>
-<form class="form-inline">
-    <div class="form-group">
-      <input type="text" 
-      class="form-control"
-      id="chat-input"
-      data_user="<%= current_user.id %>"
-      data_room="<%= params[:id] %>"/>
+<%= form_for(@message) do |f| %>
+    <div class="form-group" >
+    <%= render 'shared/error_messages', object: f.object%>
+        <%= f.text_area :content,  class: 'form-control'%>
+        <%= f.hidden_field :room_id, {value: params[:id]} %>
     </div>
-    <button id="button" class="btn btn-primary" >送信</button>
-  </form>
+  <%= f.submit '送信', class: "btn btn-primary form-control mt-4" %>
+  <% end %>
   
 <div id="messages">
     <ul class="list-group">

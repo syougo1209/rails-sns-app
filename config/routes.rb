@@ -23,6 +23,6 @@ Rails.application.routes.draw do
   resources :rooms, only: [:show, :index]
   resources :entries, only: [:create]
   resources :tags, only: [:create,:destroy,:show]
-  
+  resources :messages, only: [:create]
   mount ActionCable.server => '/cable'
 end
