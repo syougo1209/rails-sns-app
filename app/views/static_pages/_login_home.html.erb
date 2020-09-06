@@ -1,9 +1,8 @@
 <div clas="row">
-    <section class="user-info col-md-3">
+    <section class="user-info col-md-3" style="text-align: center">
         <%= render 'users/user_info' %>
     </section>
-    
+    <div style="text-align: center"><%= link_to "記事の投稿", new_post_path, class: "post-button btn btn-success" %></div>
     <%= render "shared/favandfeed" %>
-    
 </div>
 

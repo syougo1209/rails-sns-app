@@ -53,12 +53,6 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   
   test "users detail test" do
     log_in_as(@user)
-    get user_path(@user)
-    assert_select "a[href=?]",edit_user_path(@user)
-    assert_select 'img'
-    assert_select 'div.pagination'
-    assert_select "a[href=?]",following_user_path(@user)
-    assert_select "a[href=?]",followers_user_path(@user)
     get user_path(@other_user)
     assert_select "a[href=?]",edit_user_path(@other_user),count: 0
     assert_select "a[href=?]",following_user_path(@other_user)

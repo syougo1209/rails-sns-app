@@ -10,23 +10,18 @@
 <%= current_user.name %>
 </div>
 <%= link_to "ユーザー情報の編集", edit_user_path(@current_user), class: "btn btn-success" %>
+<% if @user.prefecture!="" %>
 <div class="show-user-pref ">
 <%= current_user.prefecture %>
 </div>
+<% end %>
 
 </div>
 <div class="follow">
     <%= render "shared/follow_info" %>
 </div>
-<div id="show-user-tags">
-<% if current_user.tags %>
-<p>あなたのタグ一覧</p>
-<div id="user-tags">
-<%= render @tags %>
-</div>
-<% end %> 
 
-</div>
+<%= render "shared/tag_list" %>
 
 <div id="tag-select">
 <p id="tag-config-select">タグの設定（タグを設定すると設定されたタグの記事が見やすくなります)</p>

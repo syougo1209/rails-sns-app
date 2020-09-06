@@ -18,10 +18,10 @@ class EntriesController < ApplicationController
                     if room.save
                         user.entries.create(room_id: room.id)
                         current_user.entries.create(room_id: room.id)
-                        flash[:success]="部屋の作成に成功しました"
+                        flash[:success]="DMが送信できます"
                         redirect_to room and return
                     else
-                        flash[:danger]="部屋の作成に失敗しました"
+                        flash[:danger]="もう一度お試しください"
                         render 'users/show'
                     end
     end #create

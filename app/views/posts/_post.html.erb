@@ -7,7 +7,7 @@
     <span class="post-user-name"><%= link_to  post.user.name, post.user %></span>
     <a href="<%= post_path(post)%>">
     <span class="content">
-       <p><%= post.title %></p><p>タグ:<%= post.tag %></p>
+       <p><%= post.title %></p><% if post.tag %> <p>ジャンル:<%= post.tag%></p> <% end %>
         </span>
         <div class="post_image">
     <%= image_tag post.picture.show.url if post.picture?%>

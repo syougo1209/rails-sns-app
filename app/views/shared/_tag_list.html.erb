@@ -1,0 +1,18 @@
+<% if @tags.count!=0 %>
+<div id="show-user-tags" style="text-align: center">
+<% if @current_user==@user %>
+<p>あなたの好きなジャンル一覧</p>
+<% else %>
+<p><%= @user.name %>の好きなジャンル一覧</p>
+<% end %>
+<div id="user-tags">
+<%= render @tags %>
+</div>
+</div>
+<% else %>
+<% if @current_user==@user %>
+<p>homeで好きなジャンルを設定することができます</p>
+<% else %>
+<p><%= @user.name %>の好きなジャンルは設定されていません</p>
+<% end %>
+<% end %>

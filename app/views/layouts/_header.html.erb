@@ -26,8 +26,8 @@
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
+              <li><%= link_to "プロフィール", @current_user %></li>
               <li><%= link_to "DM一覧", rooms_path %></li>
-              <li><%= link_to "編集", edit_user_path(current_user) %></li>
               <li><%= link_to "投稿", new_post_path %></li>
               <li class="divider"></li>
               <li>

@@ -2,7 +2,7 @@ michael:
   name: Michael Example
   password_digest: <%= User.digest('password') %>
   prefecture: 東京都
-
+  
 nick:
   name: Nick
   password_digest: <%= User.digest('password') %>

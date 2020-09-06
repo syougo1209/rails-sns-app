@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :auth_login, only: [:edit, :update, :destroy,:following,:followers]
+    before_action :auth_login, only: [:edit, :update, :destroy,:following,:followers, :show]
     before_action :limit_action_from_other_user, only: [:edit, :update, :destroy]
     
     def index
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
    if @user.save
        login @user
      flash[:success]="アカウント登録完了です"
-     redirect_to @user
+     redirect_to root_path
    else
      render "new"
    end
@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   
   def show
     @user=User.find(params[:id])
+    @tags=@user.tags if login?
     @posts=@user.posts.order(created_at: :desc).paginate(page: params[:page])
     @likeposts=@user.like_posts_feed.paginate(page: params[:page])
   end

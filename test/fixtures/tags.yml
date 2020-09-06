@@ -1,1 +1,4 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+tag:
+ tag_name: "umi"
+ user: michael

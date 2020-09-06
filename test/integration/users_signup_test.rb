@@ -29,7 +29,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                     prefecture:""}}
       end
     follow_redirect!
-    assert_template 'users/show'
+    assert_template 'static_pages/home'
     assert_not flash.empty?
   end
   

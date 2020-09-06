@@ -32,7 +32,7 @@ class FollowingRelationshipTest < ActionDispatch::IntegrationTest
     get followers_user_path(@user)
     followers.reload
     assert followers.include?(@other_user)
-    assert_select "a[href=?]", user_path(@other_user),count: 2 #操作視点がother_userなので
+    assert_select "a[href=?]", user_path(@other_user),count: 2
   end
   
   test "follow success test for http method" do
