@@ -16,7 +16,7 @@
 - Maps JavaScriptAPI
 - Geocoding API
 
-#　機能一覧
+# 機能一覧
 - ユーザー登録
 - ユーザープロフィール編集
 - ユーザーのプロフィール画像設定
