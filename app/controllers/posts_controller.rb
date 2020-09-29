@@ -8,6 +8,7 @@ def index
     @posts=Post.order(created_at: :desc)
                .paginate(page: params[:page])
                .search(params[:search],params[:prefecture])
+              
 end
 
 def new
@@ -16,7 +17,6 @@ end
 
 def create
     @post=current_user.posts.build(post_params)
-    
     if @post.save
       flash[:success]="投稿が成功しました"
       @post.update(created_date: @post.created_at.to_s(:datetime_jp))
